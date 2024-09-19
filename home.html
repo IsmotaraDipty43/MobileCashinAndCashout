@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <main class="flex justify-center">
+        <div class="mockup-phone ">
+            <div class="camera"></div>
+            <div class="display">
+              <div class="artboard artboard-demo phone-3">
+
+           
+
+
+                <div class="stats shadow">
+                  <div class="stat">
+            
+                    <div id="currentbalance" class="stat-value">89400</div>
+                    <div class="stat-desc">Avilable Balance</div>
+                  </div>
+                </div>
+               
+                <div class="divider"></div>
+                <div>
+
+                  <button id ='add' class="btn btn-lg">ADD Money</button>
+                  <button id ="cash-out" class="btn btn-lg">Cash Out</button>
+                 </div>
+                 
+                 <div class="divider"></div>
+
+                 <div id ="addmoneyfrom" class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                  <form class="card-body">
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Amount</span>
+                      </label>
+                      <input id ="amount" type="text" placeholder="Amount you want to add" class="input input-bordered" required />
+                    </div>
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text"> Pin</span>
+                      </label>
+                      <input id="pin" type="password" placeholder="Enter pin" class="input input-bordered"     autocomplete="off"         required />
+                    
+                    </div>
+                    <div class="form-control mt-6">
+                      <button id="btnAddMoney" class="btn btn-primary">Add Money</button>
+                    </div>
+                  </form>
+                </div>
+<!-- cashout  -->
+<div id="cashout-from" class="hidden  card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+  <form class="card-body">
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Amount</span>
+      </label>
+      <input id ="withdraw" type="text" placeholder="Amount you want to withdraw" class="input input-bordered" required />
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text"> Pin</span>
+      </label>
+      <input id="pinn" type="password" placeholder="Enter pin" class="input input-bordered"     autocomplete="off"         required />
+    
+    </div>
+    <div class="form-control mt-6">
+      <button id="btncashoutMoney" class="btn btn-primary">Cash Out</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+    </main>
+
+<script>
+// add money
+document.getElementById('btnAddMoney').addEventListener('click',function(event){
+  event.preventDefault();
+  const addMoneyInput = document.getElementById('amount').value;
+  const pinnumber=document.getElementById('pin').value;
+  if(pinnumber === "55"){
+ const currentBalance = document.getElementById('currentbalance').innerText;
+ const balance = parseFloat(currentBalance);
+ const newMoney = parseFloat(addMoneyInput);
+const newBalance = balance + newMoney;
+document.getElementById('currentbalance').innerText = newBalance;
+document.getElementById('pin').value ='';
+document.getElementById('amount').value = '';
+  }else{
+    alert('failed to add the money in account');
+    document.getElementById('pin').value ='';
+document.getElementById('amount').value = '';
+  }
+
+})
+
+//cashout
+
+document.getElementById('btncashoutMoney').addEventListener('click',function(event){
+event.preventDefault();
+const withdrawMoney = document.getElementById('withdraw').value;
+const pin = document.getElementById('pinn').value
+if(pin === "55"){
+ const currentBalance = document.getElementById('currentbalance').innerText;
+const money = parseFloat(withdrawMoney);
+const balance = parseFloat(currentBalance);
+const newamount = balance - money;
+document.getElementById('currentbalance').innerText = newamount;
+document.getElementById('pinn').value ='';
+document.getElementById('withdraw').value = '';
+  }else{
+    alert('failed to add the money in account');
+    
+    document.getElementById('pinn').value ='';
+    document.getElementById('withdraw').value = '';
+
+  }
+
+
+})
+// toggole
+document.getElementById('cash-out').addEventListener('click',function(){
+
+document.getElementById('cashout-from').classList.remove('hidden');
+document.getElementById('addmoneyfrom').classList.add('hidden');
+})
+
+
+document.getElementById('add').addEventListener('click',function(){
+
+  document.getElementById('cashout-from').classList.add('hidden');
+  document.getElementById('addmoneyfrom').classList.remove('hidden');
+
+
+})
+
+
+
+</script>
+
+</body>
+</html>
